@@ -1,0 +1,12 @@
+clarkwinkelmann-popular-discussion-badge:
+    forum:
+        badge_label: Popular
+
+    admin:
+        settings:
+            title: Popular discussion badge settings
+            add: Add another condition
+            comments: Comments (including first post)
+            views: Views (from third-party extension)
+            and: AND
+            or: OR

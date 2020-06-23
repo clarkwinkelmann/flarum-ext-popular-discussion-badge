@@ -1,0 +1,35 @@
+{
+    "name": "clarkwinkelmann/flarum-ext-popular-discussion-badge",
+    "description": "Adds a popular badge to discussion based on replies or number of views",
+    "keywords": [
+        "flarum"
+    ],
+    "type": "flarum-extension",
+    "license": "MIT",
+    "require": {
+        "flarum/core": ">=0.1.0-beta.13 <0.1.0-beta.14",
+        "ext-json": "*"
+    },
+    "authors": [
+        {
+            "name": "Clark Winkelmann",
+            "email": "clark.winkelmann@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ClarkWinkelmann\\PopularDiscussionBadge\\": "src/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Popular discussion",
+            "icon": {
+                "name": "fas fa-fire",
+                "backgroundColor": "#684ba6",
+                "color": "#fff"
+            }
+        }
+    }
+}
