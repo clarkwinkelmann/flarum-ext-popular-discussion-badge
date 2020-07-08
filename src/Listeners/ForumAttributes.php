@@ -22,7 +22,13 @@ class ForumAttributes
              */
             $settings = app(SettingsRepositoryInterface::class);
 
-            $event->attributes['popularDiscussionBadgeConditions'] = json_decode($settings->get('clarkwinkelmann-popular-discussion-badge.conditions'));
+            // Only include the conditions if we are in Frontend mode
+            // The presence of the conditions will signal the frontend to use Frontend mode
+            if ($settings->get('clarkwinkelmann-popular-discussion-badge.mode') !== 'scheduler') {
+                $event->attributes += [
+                    'popularDiscussionBadgeConditions' => json_decode($settings->get('clarkwinkelmann-popular-discussion-badge.conditions')),
+                ];
+            }
         }
     }
 }

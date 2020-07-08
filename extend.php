@@ -3,6 +3,7 @@
 namespace ClarkWinkelmann\PopularDiscussionBadge;
 
 use Flarum\Extend;
+use Flarum\Foundation\Application;
 use Illuminate\Contracts\Events\Dispatcher;
 
 return [
@@ -16,7 +17,15 @@ return [
 
     new Extend\Locales(__DIR__ . '/resources/locale'),
 
-    function (Dispatcher $events) {
+    (new Extend\Console())
+        ->command(Commands\UpdatePopularDiscussions::class),
+
+    new \FoF\Console\Extend\EnableConsole(),
+
+    function (Application $app, Dispatcher $events) {
+        $app->register(Providers\ConsoleProvider::class);
+
+        $events->subscribe(Listeners\DiscussionAttributes::class);
         $events->subscribe(Listeners\ForumAttributes::class);
     },
 ];

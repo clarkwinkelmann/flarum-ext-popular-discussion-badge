@@ -4,12 +4,40 @@
 
 Adds a "popular" badge to discussions based on custom criteria.
 
-The available criteria are:
+The extension can be used in two main "modes":
+
+### Frontend mode
+
+This mode verifies the badge conditions client-side against the information the current user can see.
+The database column is not used at all.
+
+In Frontend mode, the following criteria are available:
 
 - Number of comments
-- Number of views (works with either `michaelbelgium/flarum-discussion-views` or `flarumite/simple-discussion-views`)
+- Number of views
 
-The computation of the badge is done client-side based on the information the current user can see.
+The number of views is not computed by this extension.
+It requires either `michaelbelgium/flarum-discussion-views` or `flarumite/simple-discussion-views`.
+
+### Scheduler mode
+
+This mode makes use of a CRON job to update the discussion status.
+[See this thread on how to configure the Flarum scheduler in your crontab](https://discuss.flarum.org/d/24118-setup-the-flarum-scheduler-using-cron)
+
+You can configure the frequency of the update through the extension settings.
+
+In Scheduler mode, the following criteria are available:
+
+- Number of comments
+- Timeframe for the number of comments (in n last hours, leave empty for the total)
+- Number of views
+- Timeframe for the number of views (in n last hours, leave empty for the total)
+
+The number of views is not computed by this extension.
+It requires either `michaelbelgium/flarum-discussion-views` or `flarumite/simple-discussion-views`.
+
+It's only possible to time-constraint the views of `michaelbelgium/flarum-discussion-views`.
+Setting a views timeframe while using the Flarumite views extensions will result in an error.
 
 ## Installation
 

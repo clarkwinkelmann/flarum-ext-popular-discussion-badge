@@ -1,4 +1,4 @@
-import {extend, override} from 'flarum/extend';
+import {extend} from 'flarum/extend';
 import app from 'flarum/app';
 import Discussion from 'flarum/models/Discussion';
 import Badge from 'flarum/components/Badge';
@@ -18,6 +18,7 @@ function discussionMatchesConditions(discussion, conditions) {
             case 'comments':
                 return discussion.commentCount() >= value;
             case 'views':
+                // `views` is from flarumite/simple-discussion-views while `viewCount` is from michaelbelgium/flarum-discussion-views
                 return discussion.attribute('views') >= value || discussion.attribute('viewCount') >= value;
             default:
                 console.warn('Unknown popular discussion criteria ' + key);
@@ -30,7 +31,15 @@ app.initializers.add('clarkwinkelmann-popular-discussion-badge', () => {
     extend(Discussion.prototype, 'badges', function (items) {
         const conditionsList = app.forum.attribute('popularDiscussionBadgeConditions');
 
-        if (Array.isArray(conditionsList) && conditionsList.some(conditions => discussionMatchesConditions(this, conditions))) {
+        let isPopular = false;
+
+        if (Array.isArray(conditionsList)) {
+            isPopular = conditionsList.some(conditions => discussionMatchesConditions(this, conditions));
+        } else {
+            isPopular = this.attribute('isPopular');
+        }
+
+        if (isPopular) {
             items.add('popular', Badge.component({
                 type: 'popular',
                 icon: 'fas fa-fire',
