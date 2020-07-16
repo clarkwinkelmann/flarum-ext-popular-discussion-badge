@@ -47,3 +47,4 @@ Setting a views timeframe while using the Flarumite views extensions will result
 
 - [GitHub](https://github.com/clarkwinkelmann/flarum-ext-popular-discussion-badge)
 - [Packagist](https://packagist.org/packages/clarkwinkelmann/flarum-ext-popular-discussion-badge)
+- [Discuss](https://discuss.flarum.org/d/24490)
