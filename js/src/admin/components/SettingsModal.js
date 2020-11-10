@@ -167,8 +167,7 @@ export default class SettingsModal extends BaseSettingsModal {
 
                                 this.setting(settingsPrefix + 'conditions')(JSON.stringify(conditionsList));
                             },
-                            children: app.translator.trans(translationPrefix + 'add'),
-                        })))
+                        }, app.translator.trans(translationPrefix + 'add'))))
                     ]),
                 ]),
                 m('p.helpText', app.translator.trans(translationPrefix + 'conditions_help')),

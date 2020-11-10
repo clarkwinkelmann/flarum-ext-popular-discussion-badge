@@ -31,7 +31,7 @@ app.initializers.add('clarkwinkelmann-popular-discussion-badge', () => {
     extend(Discussion.prototype, 'badges', function (items) {
         const conditionsList = app.forum.attribute('popularDiscussionBadgeConditions');
 
-        let isPopular = false;
+        let isPopular;
 
         if (Array.isArray(conditionsList)) {
             isPopular = conditionsList.some(conditions => discussionMatchesConditions(this, conditions));
