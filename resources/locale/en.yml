@@ -4,7 +4,6 @@ clarkwinkelmann-popular-discussion-badge:
 
     admin:
         settings:
-            title: Popular discussion badge settings
             mode: Mode of operation
             mode_help: >
                 Frontend mode is an efficient solution that doesn't use the database.
