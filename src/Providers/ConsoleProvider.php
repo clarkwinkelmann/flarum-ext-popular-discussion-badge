@@ -14,7 +14,10 @@ class ConsoleProvider extends AbstractServiceProvider
             define('ARTISAN_BINARY', 'flarum');
         }
 
-        $settings = $this->app->make(SettingsRepositoryInterface::class);
+        /**
+         * @var $settings SettingsRepositoryInterface
+         */
+        $settings = $this->container->make(SettingsRepositoryInterface::class);
 
         if ($settings->get('clarkwinkelmann-popular-discussion-badge.mode') !== 'scheduler') {
             return;
@@ -22,7 +25,7 @@ class ConsoleProvider extends AbstractServiceProvider
 
         $frequency = $settings->get('clarkwinkelmann-popular-discussion-badge.scheduler_frequency', 'daily');
 
-        $this->app->resolving(Schedule::class, function (Schedule $schedule) use ($frequency) {
+        $this->container->resolving(Schedule::class, function (Schedule $schedule) use ($frequency) {
             $builder = $schedule->command('clarkwinkelmann:popular-discussions');
 
             switch ($frequency) {

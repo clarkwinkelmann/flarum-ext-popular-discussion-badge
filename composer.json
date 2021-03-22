@@ -7,9 +7,9 @@
     "type": "flarum-extension",
     "license": "MIT",
     "require": {
-        "flarum/core": ">=0.1.0-beta.15 <0.1.0-beta.16",
+        "flarum/core": ">=0.1.0-beta.16 <0.1.0-beta.17",
         "ext-json": "*",
-        "fof/console": "^0.6.0"
+        "fof/console": "^0.7.0"
     },
     "authors": [
         {
@@ -31,7 +31,7 @@
     "extra": {
         "flarum-extension": {
             "title": "Popular Discussion",
-            "category": "discussion",
+            "category": "feature",
             "icon": {
                 "name": "fas fa-fire",
                 "backgroundColor": "#684ba6",

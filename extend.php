@@ -6,7 +6,6 @@ use Flarum\Api\Serializer\DiscussionSerializer;
 use Flarum\Api\Serializer\ForumSerializer;
 use Flarum\Discussion\Discussion;
 use Flarum\Extend;
-use Flarum\Settings\SettingsRepositoryInterface;
 
 return [
     (new Extend\Frontend('forum'))
@@ -30,22 +29,7 @@ return [
         }),
 
     (new Extend\ApiSerializer(ForumSerializer::class))
-        ->mutate(function () {
-            /**
-             * @var SettingsRepositoryInterface $settings
-             */
-            $settings = app(SettingsRepositoryInterface::class);
-
-            // Only include the conditions if we are in Frontend mode
-            // The presence of the conditions will signal the frontend to use Frontend mode
-            if ($settings->get('clarkwinkelmann-popular-discussion-badge.mode') !== 'scheduler') {
-                return [
-                    'popularDiscussionBadgeConditions' => json_decode($settings->get('clarkwinkelmann-popular-discussion-badge.conditions')),
-                ];
-            }
-
-            return [];
-        }),
+        ->attributes(ForumAttributes::class),
 
     (new Extend\ServiceProvider())
         ->register(Providers\ConsoleProvider::class),
