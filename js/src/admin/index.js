@@ -1,6 +1,6 @@
-import app from 'flarum/app';
-import Button from 'flarum/components/Button';
-import Select from 'flarum/components/Select';
+import app from 'flarum/admin/app';
+import Button from 'flarum/common/components/Button';
+import Select from 'flarum/common/components/Select';
 
 /* global m */
 

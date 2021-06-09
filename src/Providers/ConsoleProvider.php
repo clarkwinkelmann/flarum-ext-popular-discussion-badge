@@ -10,10 +10,6 @@ class ConsoleProvider extends AbstractServiceProvider
 {
     public function register()
     {
-        if (!defined('ARTISAN_BINARY')) {
-            define('ARTISAN_BINARY', 'flarum');
-        }
-
         /**
          * @var $settings SettingsRepositoryInterface
          */

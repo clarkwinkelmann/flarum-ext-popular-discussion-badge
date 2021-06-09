@@ -21,8 +21,6 @@ return [
     (new Extend\Console())
         ->command(Commands\UpdatePopularDiscussions::class),
 
-    new \FoF\Console\Extend\EnableConsole(),
-
     (new Extend\ApiSerializer(DiscussionSerializer::class))
         ->attribute('isPopular', function (DiscussionSerializer $serializer, Discussion $discussion) {
             return $discussion->is_popular;
