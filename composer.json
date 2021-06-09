@@ -2,13 +2,18 @@
     "name": "clarkwinkelmann/flarum-ext-popular-discussion-badge",
     "description": "Adds a popular badge to discussion based on replies or number of views",
     "keywords": [
-        "flarum"
+        "flarum",
+        "popular"
     ],
     "type": "flarum-extension",
     "license": "MIT",
     "require": {
         "flarum/core": "^1.0",
         "ext-json": "*"
+    },
+    "suggest": {
+        "flarumite/simple-discussion-views": "For popular conditions based on number of views",
+        "michaelbelgium/flarum-discussion-views": "For popular conditions based on number of views, including timeframe"
     },
     "authors": [
         {
@@ -35,7 +40,11 @@
                 "name": "fas fa-fire",
                 "backgroundColor": "#684ba6",
                 "color": "#fff"
-            }
+            },
+            "optional-dependencies": [
+                "flarumite/simple-discussion-views",
+                "michaelbelgium/flarum-discussion-views"
+            ]
         },
         "flagrow": {
             "discuss": "https://discuss.flarum.org/d/24490"
