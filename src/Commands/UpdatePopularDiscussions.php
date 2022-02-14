@@ -3,9 +3,12 @@
 namespace ClarkWinkelmann\PopularDiscussionBadge\Commands;
 
 use Carbon\Carbon;
+use ClarkWinkelmann\PopularDiscussionBadge\Events\DiscussionBecamePopular;
+use ClarkWinkelmann\PopularDiscussionBadge\Events\DiscussionIsNoLongerPopular;
 use Flarum\Discussion\Discussion;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Illuminate\Console\Command;
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Michaelbelgium\Discussionviews\Models\DiscussionView;
@@ -117,5 +120,14 @@ class UpdatePopularDiscussions extends Command
         Discussion::query()->whereIn('id', $noLongerPopularDiscussionIds)->update([
             'is_popular' => false,
         ]);
+
+        // Dispatch events
+        $events = resolve(Dispatcher::class);
+        foreach ($newPopularDiscussionIds as $discussionId) {
+            $events->dispatch(new DiscussionBecamePopular($discussionId));
+        }
+        foreach ($noLongerPopularDiscussionIds as $discussionId) {
+            $events->dispatch(new DiscussionIsNoLongerPopular($discussionId));
+        }
     }
 }
