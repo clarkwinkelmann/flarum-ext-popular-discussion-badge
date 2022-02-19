@@ -2,16 +2,21 @@ import app from 'flarum/admin/app';
 import Button from 'flarum/common/components/Button';
 import Select from 'flarum/common/components/Select';
 
-/* global m */
-
 const settingsPrefix = 'clarkwinkelmann-popular-discussion-badge.';
 const translationPrefix = 'clarkwinkelmann-popular-discussion-badge.admin.settings.';
+
+interface Condition {
+    comments: number | null
+    comments_within_hours?: number | null
+    views: number | null
+    views_within_hours?: number | null
+}
 
 app.initializers.add('clarkwinkelmann-popular-discussion-badge', () => {
     app.extensionData
         .for('clarkwinkelmann-popular-discussion-badge')
         .registerSetting(function () {
-            let conditionsList;
+            let conditionsList: Condition[];
 
             try {
                 conditionsList = JSON.parse(this.setting(settingsPrefix + 'conditions')());

@@ -3,8 +3,6 @@ import app from 'flarum/forum/app';
 import Discussion from 'flarum/common/models/Discussion';
 import Badge from 'flarum/common/components/Badge';
 
-/* global m */
-
 function discussionMatchesConditions(discussion, conditions) {
     return Object.keys(conditions).every(key => {
         const value = conditions[key];
