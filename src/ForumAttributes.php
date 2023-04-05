@@ -19,7 +19,7 @@ class ForumAttributes
         // The presence of the conditions will signal the frontend to use Frontend mode
         if ($this->settings->get('clarkwinkelmann-popular-discussion-badge.mode') !== 'scheduler') {
             return [
-                'popularDiscussionBadgeConditions' => json_decode($this->settings->get('clarkwinkelmann-popular-discussion-badge.conditions')),
+                'popularDiscussionBadgeConditions' => @json_decode($this->settings->get('clarkwinkelmann-popular-discussion-badge.conditions')),
             ];
         }
 
